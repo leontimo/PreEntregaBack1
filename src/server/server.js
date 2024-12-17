@@ -1,4 +1,5 @@
 const productRouter = require('../routers/productsRouter')
+const cartRouter = require('../routers/cartRouter')
 
 // Configuracion del servidor
 const express = require('express'); 
@@ -17,6 +18,7 @@ server.get('/', (request, response) => {
 
 // La ejecucion de los routers
 server.use('/api/products', productRouter);
+server.use('/api/carts', cartRouter);
 
 
 

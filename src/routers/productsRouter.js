@@ -3,8 +3,6 @@ const path = require('path');
 const express = require('express');
 const {v4: uuidv4} = require('uuid');
 
-console.log(uuidv4)
-
 const productRouter = express.Router()
 
 // Sirve para probar que la ruta es correcta.
