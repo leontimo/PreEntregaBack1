@@ -1,26 +1,31 @@
-const productRouter = require('../routers/productsRouter')
-const cartRouter = require('../routers/cartRouter')
-
-// Configuracion del servidor
-const express = require('express'); 
+import express from "express"
+import handlebars from "express-handlebars";
+import morgan from "morgan";
+import path from "path";
+import cartRouter from "../routers/cartRouter.js";
+import productsRouter from "../routers/productsRouter.js";
+import { __dirname } from "../dirname.js";
+import { viewsRoutes } from "../routers/view.routes.js";
 
 const server = express(); 
+
+server.use(morgan("dev"));
 server.use(express.json())
+server.use(express.urlencoded({extended: true}));
+server.use(express.static(path.resolve(__dirname, "../public")));
 
-// get -> localhost:8080/pepito  =   www.mercadolibre.com/pepito
-// request -> es un objeto que me manda el front (peticion)
-// response -> es un objeto que yo, desde el back, le mando al front (respuesta)
-server.get('/', (request, response) => {
-    response.send('Hola desde la ruta principal de mi app')
-})
+// Handlebars config
+server.engine("hbs", handlebars.engine({
+    extname: ".hbs",
+    defaultLayout: "main"
+}))
+server.set("view engine", "hbs");
+server.set("views", path.resolve(__dirname, "./views"));
 
-// La configuracion de los routers y las rutas -> carpeta routers
-
-// La ejecucion de los routers
-server.use('/api/products', productRouter);
+server.use("/", viewsRoutes)
+server.use('/api/products', productsRouter);
 server.use('/api/carts', cartRouter);
 
 
 
-module.exports = server;
-
+export default server;
