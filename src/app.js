@@ -1,7 +1,7 @@
 import server from "./server/server.js";
 import { Server } from "socket.io";
 import products from "./db/products.json" assert { type: "json" };
-
+import "./db/config.js";
 const PORT = 8080;
 
 // Configuracion del server -> Se delega -> server.jsnp
