@@ -1,83 +1,90 @@
-import fs from 'fs/promises'
-import path from 'path';
+import fs from "fs/promises";
+import path from "path";
 import { Router } from "express";
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import { io } from "../app.js";
-import { __dirname } from '../dirname.js';
+import { __dirname } from "../dirname.js";
+import Product from "../models/product.model.js";
 
 const productsRouter = Router();
 
-// Sirve para probar que la ruta es correcta.
-const filePath = path.join(__dirname, '../src/db/products.json');
-
 // Pide todos los productos
-productsRouter.get('/', async (request, response) => {
-    const data = await fs.readFile(filePath, 'utf-8');
+productsRouter.get("/", async (request, response) => {
+  const allProducts = await Product.find();
 
-    response.json(JSON.parse(data))
-})
+  response.json(allProducts);
+});
 
-// Pide un producto por su id
-productsRouter.get('/:pid', async (request, response) => {
-    const {pid} = request.params
+// Pide un producto por id
+productsRouter.get("/:pid", async (request, response) => {
+  const { pid } = request.params;
 
-    const data = await fs.readFile(filePath, 'utf-8');
+  const productById = await Product.findById({ _id: pid });
 
-    const products = JSON.parse(data)
+  console.log(productById);
 
-    const product = products.find(product => product.id === pid)
+  if (!productById) {
+    return { message: "Product not found", statusCode: 404 };
+  }
 
-    response.json(product)
-})
+  response.json(productById);
+});
 
-productsRouter.post('/', async (request, response) => {
-    const newProduct = request.body
+// Inserta un nuevo producto
+productsRouter.post("/", async (request, response) => {
+  const product = request.body;
 
-    const { title, description, price } = newProduct;
+  try {
+    const newProduct = new Product(product);
 
-    console.log(newProduct)
+    await newProduct.save();
 
-    const data = await fs.readFile(filePath, 'utf-8');
+    response.json({ message: "Producto generado con exito", statusCode: 201 });
+  } catch (error) {
+    console.log(error);
+    response.json({ message: "Ocurrio un error", statusCode: 400 });
+  }
+});
 
-    const products = JSON.parse(data)
+productsRouter.put("/:pid", async (request, response) => {
+  const { pid } = request.params;
+  const productToEdit = request.body;
 
-    products.push({id: uuidv4(), ...newProduct})
+  try {
+    const productById = await Product.findById({ _id: pid });
 
-    await fs.writeFile(filePath, JSON.stringify(products), 'utf-8')
+    if (!productById) {
+      response.json({ message: "Producto no encontrado", statusCode: 404 });
+    }
 
-    io.emit("new-product", { title, description, price } );
+    productById.title = productToEdit.title;
+    productById.description = productToEdit.description;
+    productById.price = productToEdit.price;
+    productById.stock = productToEdit.stock;
+    productById.thumbnails = productToEdit.thumbnails;
 
-    response.json({message: "Producto agregado al carrito!"})
-})
+    await productById.save();
 
-productsRouter.put('/:pid', async (request, response) => {
-    const updatedProduct = request.body
+    response.json({ message: "Producto editado con exito", statusCode: 200 });
+  } catch (error) {
+    console.log(error);
+    response.json({ message: "Ocurrio un error", statusCode: 400 });
+  }
+});
 
-    const data = await fs.readFile(filePath, 'utf-8');
+productsRouter.delete("/:pid", async (request, response) => {
+  const { pid } = request.params;
 
-    const products = JSON.parse(data)
+  try {
+    const productToDelete = await Product.deleteOne({ _id: pid });
 
-    const newDB = products.filter(product => product.id !== updatedProduct.id)
-
-    newDB.push(updatedProduct)
-
-    await fs.writeFile(filePath, JSON.stringify(newDB), 'utf-8')
-
-    response.json({message: "Producto editado exitosamente"})
-})
-
-productsRouter.delete('/:pid', async (request, response) => {
-    const {pid} = request.params
-
-    const data = await fs.readFile(filePath, 'utf-8');
-
-    const products = JSON.parse(data)
-
-    const newDB = products.filter(product => product.id !== pid)
-
-    await fs.writeFile(filePath, JSON.stringify(newDB), 'utf-8')
-
-    response.json({message: "Producto eliminado exitosamente"})
-})
+    if (productToDelete.deleteCount === 0) {
+      response.json({ message: "Producto no encontrado", statusCode: 404 });
+    }
+    response.json({ message: "Producto eliminado con exito", statusCode: 200 });
+  } catch (error) {
+    response.json({ message: "Ocurrio un error", statusCode: 400 });
+  }
+});
 
 export default productsRouter;

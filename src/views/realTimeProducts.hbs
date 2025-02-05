@@ -1,6 +1,66 @@
 <h1>Products in real time</h1>
 
-<ul id="products" class="collection"></ul>
+{{! <ul id="products" class="collection"></ul> }}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"> Titulo </th>
+      <th scope="col"> Descripcion </th>
+      <th scope="col"> Precio </th>
+      <th scope="col"> Stock </th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each products.docs}}
+      <tr>
+        <td> {{this.title}}</td>
+        <td> {{this.description}}</td>
+        <td> {{this.price}}</td>
+        <td> {{this.stock}} </td>
+      </tr>
+
+    {{/each}}
+  </tbody>
+  {{#if products.isEmpty}}
+    <tfoot>
+      <tr>
+        <td colspan="4">No hay productos para mostrar</td>
+      </tr>
+    </tfoot>
+  {{/if}}
+</table>
+
+<div>
+  <ul style="display: flex; justify-content: space-between; column-gap: 10px;">
+    {{#if products.hasPrevPage}}
+      <li class="page-item z-depth-1" style="width: 100px;">
+        <a
+          class="page-link"
+          style="color: white; display: flex; justify-content: center; align-items: center; margin: 0; border-radius: 2px; background-color: #007bff; text-decoration: none; font-size: 16px; padding: 10px 20px; cursor: pointer;"
+          href="/products?page={{products.prevPage}}&&limit={{products.limit}}"
+        >
+          Previous
+        </a>
+      </li>
+    {{/if}}
+
+    {{! Links a siguientes páginas }}
+
+    {{#if products.hasNextPage}}
+      <li class="page-item z-depth-1" style="width: 100px;">
+        <a
+          class="page-link"
+          style="color: white; display: flex; justify-content: center; align-items: center; margin: 0; border-radius: 2px; background-color: #007bff; text-decoration: none; font-size: 16px; padding: 10px 20px; cursor: pointer;"
+          href="/products?page={{products.nextPage}}&&limit={{products.limit}}"
+        >Next</a></li>
+    {{/if}}
+  </ul>
+  <button class="btn btn-primary">
+    Current Page:
+    {{products.concurrentPage}}
+  </button>
+</div>
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/main.js"></script>
