@@ -1,4 +1,4 @@
-<h1>Products in real time</h1>
+<h1>Productos</h1>
 
 {{! <ul id="products" class="collection"></ul> }}
 
@@ -7,8 +7,9 @@
     <tr>
       <th scope="col"> Titulo </th>
       <th scope="col"> Descripcion </th>
-      <th scope="col"> Precio </th>
+      <th scope="col"> Categoria </th>
       <th scope="col"> Stock </th>
+      <th scope="col"> Precio </th>
     </tr>
   </thead>
   <tbody>
@@ -16,8 +17,14 @@
       <tr>
         <td> {{this.title}}</td>
         <td> {{this.description}}</td>
-        <td> {{this.price}}</td>
+        <td> {{this.category}} </td>
         <td> {{this.stock}} </td>
+        <td> {{this.price}}</td>
+        <td>
+          <button
+            style="color: white; display: flex; justify-content: center; align-items: center; margin: 0; border: none; border-radius: 2px; background-color: #17b947; text-decoration: none; font-size: 16px; padding: 5px 10px; box-shadow: 0px 1px 5px -2px black; cursor: pointer;"
+          >Agregar</button>
+        </td>
       </tr>
 
     {{/each}}
@@ -58,9 +65,24 @@
   </ul>
   <button class="btn btn-primary">
     Current Page:
-    {{products.concurrentPage}}
+    {{products.page}}
   </button>
 </div>
+
+<hr />
+
+<section>
+  <h2>Objeto de paginacion</h2>
+  <p>
+    {
+    <ul style="margin-left: 2%;">
+      {{#each products as |value key|}}
+        <li>{{key}}: {{value}}</li>
+      {{/each}}
+    </ul>
+    }
+  </p>
+</section>
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/main.js"></script>

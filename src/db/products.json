@@ -1,102 +1,136 @@
 [
-  {
-    "id": "1",
-    "title": "Termo Stanley",
-    "description": "Un termo hermoso, verde y que mantiene el agua calentita por 24 hs.",
-    "code": "pepe",
-    "price": 200000,
-    "status": true,
-    "stock": 1,
-    "category": "termos",
-    "thumbnails": ["enlace"]
-  },
-  {
-    "id": "2",
-    "title": "Termo Robertito",
-    "description": "Un termo humilde, excelente relacion precio calidad.",
-    "code": "pepe",
-    "price": 50000,
-    "status": true,
-    "stock": 1,
-    "category": "termos",
-    "thumbnails": ["enlace"]
-  },
-  {
-    "id": "de8c6eeb-88c6-4509-8bf6-73b71d3b940f",
-    "title": "Termo La Recoleta",
-    "description": "Viene con agua cheta",
-    "price": 2000
-  },
-  {
-    "title": "Termo La Recoleta",
-    "description": "Viene con agua cheta",
-    "price": 3000
-  },
-  {
-    "id": "1",
-    "title": "Termo Stanley",
-    "description": "Un termo hermoso, verde y que mantiene el agua calentita por 24 hs.",
-    "code": "pepe",
-    "price": 200000,
-    "status": true,
-    "stock": 1,
-    "category": "termos",
-    "thumbnails": ["enlace"]
-  },
-  {
-    "id": "2",
-    "title": "Termo Robertito",
-    "description": "Un termo humilde, excelente relacion precio calidad.",
-    "code": "pepe",
-    "price": 50000,
-    "status": true,
-    "stock": 1,
-    "category": "termos",
-    "thumbnails": ["enlace"]
-  },
-  {
-    "id": "de8c6eeb-88c6-4509-8bf6-73b71d3b940f",
-    "title": "Termo La Recoleta",
-    "description": "Viene con agua cheta",
-    "price": 2000
-  },
-  {
-    "title": "Termo La Recoleta",
-    "description": "Viene con agua cheta",
-    "price": 3000
-  },
-  {
-    "id": "1",
-    "title": "Termo Stanley",
-    "description": "Un termo hermoso, verde y que mantiene el agua calentita por 24 hs.",
-    "code": "pepe",
-    "price": 200000,
-    "status": true,
-    "stock": 1,
-    "category": "termos",
-    "thumbnails": ["enlace"]
-  },
-  {
-    "id": "2",
-    "title": "Termo Robertito",
-    "description": "Un termo humilde, excelente relacion precio calidad.",
-    "code": "pepe",
-    "price": 50000,
-    "status": true,
-    "stock": 1,
-    "category": "termos",
-    "thumbnails": ["enlace"]
-  },
-  {
-    "id": "de8c6eeb-88c6-4509-8bf6-73b71d3b940f",
-    "title": "Termo La Recoleta",
-    "description": "Viene con agua cheta",
-    "price": 2000
-  },
-  {
-    "title": "Termo La Recoleta",
-    "description": "Viene con agua cheta",
-    "price": 3000
-  }
+    {
+   
+        "title": "Termo Stanley",
+        "description": "Un termo hermoso, verde y que mantiene el agua calentita por 24 hs.",
+        "code": 25,
+        "price": 200000,
+        "status": true,
+        "stock": 1,
+        "category": "termos acero",
+        "thumbnails": ["enlace"]
+      },
+      {
+   
+        "title": "Termo Stanley",
+        "description": "Un termo hermoso, azul y que mantiene el agua calentita por 18 hs.",
+        "code": 22,
+        "price": 200000,
+        "status": true,
+        "stock": 1,
+        "category": "termos",
+        "thumbnails": ["enlace"]
+      },
+      {
+   
+        "title": "Termo Stanley",
+        "description": "Un termo hermoso, gris y que mantiene el agua calentita por 16 hs.",
+        "code": 25,
+        "price": 200000,
+        "status": true,
+        "stock": 1,
+        "category": "termos",
+        "thumbnails": ["enlace"]
+      },
+      {
+   
+        "title": "Termo Stanley",
+        "description": "Un termo hermoso, verde y que mantiene el agua calentita por 24 hs.",
+        "code": 25,
+        "price": 200000,
+        "status": true,
+        "stock": 1,
+        "category": "termos",
+        "thumbnails": ["enlace"]
+      },
 
+{
+   
+    "title": "Termo Stanley",
+    "description": "Un termo hermoso, verde y que mantiene el agua calentita por 24 hs.",
+    "code": 25,
+    "price": 200000,
+    "status": true,
+    "stock": 1,
+    "category": "termos",
+    "thumbnails": ["enlace"]
+  },
+  {
+   
+    "title": "Termo Stanley",
+    "description": "Un termo hermoso, verde y que mantiene el agua calentita por 24 hs.",
+    "code": 25,
+    "price": 200000,
+    "status": true,
+    "stock": 1,
+    "category": "termos",
+    "thumbnails": ["enlace"]
+  },
+  {
+   
+    "title": "Termo Stanley",
+    "description": "Un termo hermoso, verde y que mantiene el agua calentita por 24 hs.",
+    "code": 25,
+    "price": 200000,
+    "status": true,
+    "stock": 1,
+    "category": "termos",
+    "thumbnails": ["enlace"]
+  },
+  {
+   
+    "title": "Termo Stanley",
+    "description": "Un termo hermoso, verde y que mantiene el agua calentita por 24 hs.",
+    "code": 25,
+    "price": 200000,
+    "status": true,
+    "stock": 1,
+    "category": "termos",
+    "thumbnails": ["enlace"]
+  },
+  {
+   
+    "title": "Termo Stanley",
+    "description": "Un termo hermoso, verde y que mantiene el agua calentita por 24 hs.",
+    "code": 25,
+    "price": 200000,
+    "status": true,
+    "stock": 1,
+    "category": "termos",
+    "thumbnails": ["enlace"]
+  },
+  {
+   
+    "title": "Termo Stanley",
+    "description": "Un termo hermoso, verde y que mantiene el agua calentita por 24 hs.",
+    "code": 25,
+    "price": 200000,
+    "status": true,
+    "stock": 1,
+    "category": "termos",
+    "thumbnails": ["enlace"]
+  },
+  {
+   
+    "title": "Termo Stanley",
+    "description": "Un termo hermoso, verde y que mantiene el agua calentita por 24 hs.",
+    "code": 25,
+    "price": 200000,
+    "status": true,
+    "stock": 1,
+    "category": "termos",
+    "thumbnails": ["enlace"]
+  },
+  {
+   
+    "title": "Termo Stanley",
+    "description": "Un termo hermoso, verde y que mantiene el agua calentita por 24 hs.",
+    "code": 25,
+    "price": 200000,
+    "status": true,
+    "stock": 1,
+    "category": "termos",
+    "thumbnails": ["enlace"]
+  },
+  
 ]
