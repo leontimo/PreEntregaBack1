@@ -1,82 +1,115 @@
-import fs from 'fs/promises'
-import path from "path";
-import { Router } from "express"
-import {v4 as uuidv4} from 'uuid';
-import {__dirname} from "../dirname.js"
+import { Router } from "express";
+import { __dirname } from "../dirname.js";
+import Cart from "../models/cart.model.js";
+import Product from "../models/product.model.js"
+import mongoose from "mongoose";
 
 // Configuracion del router de carrito
 const cartRouter = Router();
 
-// Sirve para probar que la ruta es correcta.
-const filePath = path.join(__dirname, '../db/cart.json');
-const productsFilePath =  path.join(__dirname, '../db/products.json');
 
-// Las rutas de carrito
-cartRouter.post('/', async (request, response) => {
-    const cart = request.body
+// Crea un nuevo carrito
+cartRouter.post("/", async (request, response) => {
+  const cart = request.body;
 
-    const data = await fs.readFile(filePath, 'utf-8');
+  try {
+    const newCart = new Cart(cart);
 
-    const carts = JSON.parse(data)
+    await newCart.save();
 
-    carts.push({id: uuidv4(), ...cart})
+    response.json({ message: "Nuevo carrito generado", statusCode: 201 });
+  } catch (error) {
+    console.log(error);
+    response.json({ message: "Ocurrio un error", statusCode: 400 });
+  }
+});
 
-    await fs.writeFile(filePath, JSON.stringify(carts), 'utf-8')
+// Muestra todos los carritos
+cartRouter.get("/", async (request, response) => {
+  const allCarts = await Cart.find();
 
-    response.json({message: "Nuevo carrito generado"})
-})
+  response.json(allCarts);
+});
 
-cartRouter.get('/', async (request, response) => {
-    const data = await fs.readFile(filePath, 'utf-8');
+// Muestra un carrito por ID
+cartRouter.get("/:cid", async (request, response) => {
+  const { cid } = request.params;
 
-    const carts = JSON.parse(data)
+  const cartById = await Cart.findById({ _id: cid });
 
-    response.json(carts)
-}) 
+  if (!cartById) {
+    return { message: "Carrito no encontrado", statusCode: 404 };
+  }
 
-cartRouter.get('/:cid', async (request, response) => {
-    const {cid} = request.params;
+  response.json(cartById);
+});
 
-    const data = await fs.readFile(filePath, 'utf-8');
+// Inserta un producto en un carrito
+cartRouter.post("/:cid/product/:pid", async (request, response) => {
+  const { cid, pid } = request.params;
 
-    const carts = JSON.parse(data)
+  try {
+    const cartById = await Cart.findById({ _id: cid });
 
-
-    const cartById = carts.find(cart => cart.id == cid)
-
-    response.json(cartById.products)
-})
-
-cartRouter.post('/:cid/product/:pid', async (request,response) => {
-   const {cid, pid} = request.params;
-
-   const cartData = await fs.readFile(filePath, 'utf-8');
-   const productsData = await fs.readFile(productsFilePath, 'utf-8');
-
-   const carts = JSON.parse(cartData)
-   const products = JSON.parse(productsData)
-
-   const product = products.find(product => product.id == pid)
-   let cartById = carts.find(cart => cart.id == cid)
-   console.log(cartById)
-   
-   const itemInCart = cartById.products.find(item => item.product == product.id)
-
-   if(!itemInCart){
-    cartById.products.push({product: product.id, quantity: 1})
-   } else {
-    let prevQuantity = itemInCart.quantity
-    cartById = {...cartById, products: cartById.products.filter(item => item.product != itemInCart.product)}
+    const productById = await Product.findById({ _id: pid });
     
-    cartById.products.push({product: product.id, quantity: prevQuantity + 1})
-   }
-   
-   const newCarts = carts.filter(cart => cart.id != cartById.id)
-   newCarts.push(cartById)
-   await fs.writeFile(filePath, JSON.stringify(newCarts), 'utf-8')
-   
-   response.json({message: "Producto agregado al carrito"})
-})
+    cartById.products.push(productById)
+
+    await cartById.save();
+
+    response.json({ message: "Producto agregado al carrito", statusCode: 201 });
+  } catch (error) {
+    response.json({ message: "Ocurrio un error", statusCode: 400 });
+  }
+});
+
+// Elimina un producto de un carrito
+cartRouter.delete("/:cid/product/:pid", async (request, response) => {
+  const { cid, pid } = request.params;
+
+  try {
+    const result = await Cart.updateOne(
+      { _id: new mongoose.Types.ObjectId(cid) },
+      {
+        $pull: {
+          products: {
+            _id: new mongoose.Types.ObjectId(pid)
+          }
+        }
+      }
+    );
+
+    if (result.modifiedCount === 0) {
+      return response.json({ message: "No se encontró el producto o no se pudo eliminar", statusCode: 404 });
+    }
+
+    response.json({ message: "Producto eliminado con éxito", statusCode: 200 });
+  } catch (error) {
+    console.error(error); // Muestra el error para depuración
+    response.json({ message: "Ocurrió un error", statusCode: 400 });
+  }
+});
+
+// Vacia los productos de un carrito
+cartRouter.delete("/:cid", async (request, response) => {
+  const { cid } = request.params;
+
+  try {
+    await Cart.updateOne(
+      { _id: new mongoose.Types.ObjectId(cid) },
+      {
+        $set: {
+          products: []
+        }
+      }
+    );
+
+    response.json({ message: "Carrito vaciado con exito", statusCode: 200 });
+  } catch (error) {
+    console.error(error); // Muestra el error para depuración
+    response.json({ message: "Ocurrió un error", statusCode: 400 });
+  }
+});
 
 
 export default cartRouter;

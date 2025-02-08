@@ -1,51 +1,56 @@
 [
-    {
-   
-        "title": "Termo Stanley",
-        "description": "Un termo hermoso, verde y que mantiene el agua calentita por 24 hs.",
-        "code": 25,
-        "price": 200000,
-        "status": true,
-        "stock": 1,
-        "category": "termos acero",
-        "thumbnails": ["enlace"]
-      },
-      {
-   
-        "title": "Termo Stanley",
-        "description": "Un termo hermoso, azul y que mantiene el agua calentita por 18 hs.",
-        "code": 22,
-        "price": 200000,
-        "status": true,
-        "stock": 1,
-        "category": "termos",
-        "thumbnails": ["enlace"]
-      },
-      {
-   
-        "title": "Termo Stanley",
-        "description": "Un termo hermoso, gris y que mantiene el agua calentita por 16 hs.",
-        "code": 25,
-        "price": 200000,
-        "status": true,
-        "stock": 1,
-        "category": "termos",
-        "thumbnails": ["enlace"]
-      },
-      {
-   
-        "title": "Termo Stanley",
-        "description": "Un termo hermoso, verde y que mantiene el agua calentita por 24 hs.",
-        "code": 25,
-        "price": 200000,
-        "status": true,
-        "stock": 1,
-        "category": "termos",
-        "thumbnails": ["enlace"]
-      },
+  {
+    "title": "Termo Stanley",
+    "description": "Un termo hermoso, verde y que mantiene el agua calentita por 24 hs.",
+    "code": 25,
+    "price": 3500000,
+    "status": true,
+    "stock": 1,
+    "category": "termos acero",
+    "thumbnails": ["enlace"]
+  },
+  {
+    "title": "Termo Stanley",
+    "description": "Un termo hermoso, azul y que mantiene el agua calentita por 18 hs.",
+    "code": 22,
+    "price": 300000,
+    "status": true,
+    "stock": 1,
+    "category": "termos acero",
+    "thumbnails": ["enlace"]
+  },
+  {
+    "title": "Termo Stanley",
+    "description": "Un termo hermoso, gris y que mantiene el agua calentita por 16 hs.",
+    "code": 25,
+    "price": 280000,
+    "status": true,
+    "stock": 1,
+    "category": "termos acero",
+    "thumbnails": ["enlace"]
+  },
+  {
+    "title": "Termo roberto",
+    "description": "Un termo rustico, naranja y que mantiene el agua calentita por 14 hs.",
+    "code": 25,
+    "price": 250000,
+    "status": true,
+    "stock": 1,
+    "category": "termos plastico",
+    "thumbnails": ["enlace"]
+  },
 
-{
-   
+  {
+    "title": "Termo roberto",
+    "description": "Un termo rustico, azul y que mantiene el agua calentita por 13 hs.",
+    "code": 25,
+    "price": 20000,
+    "status": true,
+    "stock": 1,
+    "category": "termos",
+    "thumbnails": ["enlace"]
+  },
+  {
     "title": "Termo Stanley",
     "description": "Un termo hermoso, verde y que mantiene el agua calentita por 24 hs.",
     "code": 25,
@@ -56,7 +61,6 @@
     "thumbnails": ["enlace"]
   },
   {
-   
     "title": "Termo Stanley",
     "description": "Un termo hermoso, verde y que mantiene el agua calentita por 24 hs.",
     "code": 25,
@@ -67,7 +71,6 @@
     "thumbnails": ["enlace"]
   },
   {
-   
     "title": "Termo Stanley",
     "description": "Un termo hermoso, verde y que mantiene el agua calentita por 24 hs.",
     "code": 25,
@@ -78,7 +81,6 @@
     "thumbnails": ["enlace"]
   },
   {
-   
     "title": "Termo Stanley",
     "description": "Un termo hermoso, verde y que mantiene el agua calentita por 24 hs.",
     "code": 25,
@@ -89,7 +91,6 @@
     "thumbnails": ["enlace"]
   },
   {
-   
     "title": "Termo Stanley",
     "description": "Un termo hermoso, verde y que mantiene el agua calentita por 24 hs.",
     "code": 25,
@@ -100,7 +101,6 @@
     "thumbnails": ["enlace"]
   },
   {
-   
     "title": "Termo Stanley",
     "description": "Un termo hermoso, verde y que mantiene el agua calentita por 24 hs.",
     "code": 25,
@@ -111,7 +111,6 @@
     "thumbnails": ["enlace"]
   },
   {
-   
     "title": "Termo Stanley",
     "description": "Un termo hermoso, verde y que mantiene el agua calentita por 24 hs.",
     "code": 25,
@@ -120,17 +119,5 @@
     "stock": 1,
     "category": "termos",
     "thumbnails": ["enlace"]
-  },
-  {
-   
-    "title": "Termo Stanley",
-    "description": "Un termo hermoso, verde y que mantiene el agua calentita por 24 hs.",
-    "code": 25,
-    "price": 200000,
-    "status": true,
-    "stock": 1,
-    "category": "termos",
-    "thumbnails": ["enlace"]
-  },
-  
+  }
 ]

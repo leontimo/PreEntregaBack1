@@ -1,10 +1,12 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
+
+const DATABASE = process.env.DATABASE_URL;
 
 const connect = async () => {
   try {
-    await mongoose.connect(
-      "mongodb+srv://backendleo13:4864856@cluster0.3ngs8.mongodb.net/proyecto_coder?retryWrites=true&w=majority&appName=Cluster0"
-    );
+    await mongoose.connect(DATABASE);
     console.log("Bases de datos conectada");
   } catch (error) {
     console.log(`Error: ${error}`);
